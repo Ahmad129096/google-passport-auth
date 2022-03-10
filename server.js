@@ -63,12 +63,9 @@ app.get('/auth/facebook',
     scope: 'email' 
   }));
 
-app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/failed' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/success');
-  });
+  app.get("/auth/facebook/callback", passport.authenticate("facebook",{failureRedirect: '/failed'}),(req,res)=>{
+    res.redirect('/success')
+});
 
 app.get('/logout',(req,res)=>{
     req.session = null;
